@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    <div class="starter-template">
+      <div class="index-page">
+        <h1>Don't Forget!</h1>
+        <p class="lead">Never miss an event again! Fill out the form below and we will be sure to send a reminder.</p>
+        
+        <form class="form-inline" action="" method="post" name="form">
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+            <label for="email">Email</label>
+            {{ form.email(size=30, class="form-control", placeholder="jane@example.com", autofocus=true) }}
+          </div>
+          <div class="form-group">
+            <label for="delay">Reminder</label>
+            {{ form.delay(class="form-control") }}
+          </div>
+          <input type="submit" class="btn btn-default" value="Schedule Reminder">
+        </form>
+        
+        <br>
+        
+        {% for error in form.email.errors %}
+          <div class="alert alert-danger" role="alert"><b>Email:</b> {{ error }}</div>
+        {% endfor %}
+        
+        <br>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+       
+      </div>
+    </div>
+  </div>
+  
+  <hr />
+  
+  <div class="footer">
+    <span class="custom-footer ng-binding ng-scope">&copy; 2015 - David Monarrez</span>
+  </div>
+  <!-- /.container -->
+{% endblock %}
